@@ -15,8 +15,9 @@ function loadState(name)
   love.load()
 end
 function love.load()
-  dotsfont=love.graphics.newFont("assets/Minimal5x7.ttf",40)
+  dotsfont=love.graphics.newFont("assets/Minimal5x7.ttf",60)
   love.graphics.setFont(dotsfont)
+  love.graphics.setDefaultFilter('nearest')
   loadState('title')
 end
 function love.update()
