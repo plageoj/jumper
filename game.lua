@@ -16,7 +16,6 @@ function love.load()
   music:setLooping(true)
   music:play()
   getCoin=love.audio.newSource('music/se/earn.mp3')
-  love.graphics.setDefaultFilter('nearest')
   jumper=love.graphics.newImage('img/jumper.png')
   obstc=love.graphics.newImage('img/obstc.png')
   earng=love.graphics.newImage('img/earning.png')
@@ -102,6 +101,7 @@ function love.draw()
   for i,k in ipairs(args) do
     love.graphics.draw(k.img,k.x,k.y,0,2,2,8,8)
   end
+  love.graphics.print("STAGE "..love.stage,20,20)
   love.graphics.draw(score,0,20)
 end
 
