@@ -21,7 +21,7 @@ end
 function love.load()
   math.randomseed(love.timer.getTime())
   love.graphics.setColor(255,255,255)
-  music=love.audio.newSource('music/tempo.mp3')
+  music=love.audio.newSource('music/boss/boss1.mp3')
   music:setLooping(true)
   music:play()
   love.graphics.setDefaultFilter('nearest')
@@ -85,6 +85,7 @@ function love.update(dt)
         elife = elife -1
         mt = 3
         if elife == 0 then
+          love.stage=2
           loadState('game')
         end
       end
@@ -94,7 +95,7 @@ function love.update(dt)
 end
 
 function love.draw()
-  love.graphics.print(string.format('%02d',elife),wx-110)
+  love.graphics.print(string.format('%02d',elife),wx-60,20)
   love.graphics.line(0,wy+20,wx,wy+20,wx,wy+21,0,wy+21)
   love.graphics.draw(jumper,jx,jy,hit and 3.1415 or 0,2,2,8,8)
   love.graphics.draw(jumper,ex,ey,0,2,2)
