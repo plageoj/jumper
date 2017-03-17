@@ -16,7 +16,6 @@ function loadState(name)
 end
 function love.load()
   dotsfont=love.graphics.newFont("assets/Minimal5x7.ttf",40)
-  yugothic=love.graphics.newFont('assets/YuGothM.ttc',40)
   love.graphics.setFont(dotsfont)
   loadState('title')
 end
