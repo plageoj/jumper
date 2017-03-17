@@ -52,9 +52,9 @@ function love.load()
 end
 function love.update(dt)
   if jump and not hit then
-    jspd = 120
+    jspd = 220
   else
-    jspd=jspd-2
+    jspd=jspd-4
   end
   jy=jy-jspd*dt
   if jy<20 then
@@ -62,7 +62,7 @@ function love.update(dt)
     hit = true
   end
   if jy>wy then
-    jspd = 2
+    jspd = 4
     hit = false
   end
   for i,k in ipairs(args) do
