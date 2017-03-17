@@ -2,11 +2,12 @@ local args={},jumper
 local wy,jy,wx,jx
 local jump,hit
 local spd=love.stage*50
+local inispd=spd
 local jspd=-80
 
 local OBSTACLE=0
 local EARNING=1
-local EOS=255 --END OF STAGE SPEED 
+local EOS=spd+205 --END OF STAGE SPEED 
 
 local getRndY=function()
   return math.random(1,wy/32-1)*32
@@ -95,7 +96,7 @@ function love.update(dt)
 end
 
 function love.draw()
-  pos=(spd-50)/(EOS-50)*wx
+  pos=(spd-inispd)/(EOS-inispd)*wx
   love.graphics.line(0,wy+20,pos,wy+20,pos,wy+21,0,wy+21)
   love.graphics.draw(jumper,jx,jy,hit and 3.1415 or 0,2,2,8,8)
   for i,k in ipairs(args) do
