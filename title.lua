@@ -32,7 +32,7 @@ function love.load()
       }
     },
     {
-      text=love.graphics.newText(font,"HELP"),
+      text=love.graphics.newText(font,"ABOUT"),
       x={
         stop = love.graphics.getWidth() / 2,
         pos = -love.graphics.getWidth(),

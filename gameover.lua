@@ -18,3 +18,7 @@ end
 function love.touchpressed()
   loadState("title")
 end
+
+function love.mousepressed()
+  loadState("title")
+end

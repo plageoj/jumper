@@ -1,11 +1,11 @@
 local st=0
-local strs = '<< JUMPER >>\n\n'..
-  'M.Nakano\nPHYSICS, ANIMATION\n\n'..
-  'M.Sugahara\nMUSIC, PROGRAMMING\n\n'..
-  'S.Ohya\nLEVEL DESIGN\n\n'..
-  'K.Watanabe\nTESTING\n\n'..
-  'POWERED BY Love2d\n'..
-  'http://love2d.org'
+local strs = '<< JUMPER >> VER 0.0.1...\n\n'..
+  '...IS LICENSED UNDER\n'..
+  'THE APACHE LICENSE 2.0.\n\n'..
+  '...IS POWERED BY Love2d 0.10.2.\n'..
+  'http://love2d.org\n\n'..
+  'FOR MORE INFORMATION VISIT:\n'..
+  'https://github.com/plageoj/jumper'
 function love.load()
   music = love.audio.newSource('music/stg2.mp3')
   love.audio.play(music)
@@ -19,6 +19,7 @@ function love.update(dt)
 end
 function love.draw()
   love.graphics.print(strs,20,20)
+  love.graphics.print("RESOLUTION: "..love.graphics.getWidth().."x"..love.graphics.getHeight(),20,love.graphics.getHeight()-60)
 end
 function love.keypressed()
   loadState("title")
