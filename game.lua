@@ -1,7 +1,7 @@
 local args={},jumper
 local wy,jy,wx,jx
 local jump,hit
-local spd=love.stage*50
+local spd=love.stage*50+20
 local inispd=spd
 local jspd=-80
 
