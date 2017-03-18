@@ -128,3 +128,4 @@ function love.keyreleased(key)
     jump=false
   end
 end
+
