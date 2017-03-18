@@ -77,6 +77,9 @@ function love.keypressed(key)
   end
 end
 
+function love.touchpressed(id,x,y)
+end
+
 function love.mousepressed(x,y)
   local newState={"game","credit"}
   for i=2,3 do
@@ -86,3 +89,4 @@ function love.mousepressed(x,y)
     end
   end
 end
+
