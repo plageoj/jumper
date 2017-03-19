@@ -4,10 +4,11 @@ local jump,hit
 local spd=love.stage*50+20
 local inispd=spd
 local jspd=-80
+local pause=false
 
 local OBSTACLE=0
 local EARNING=1
-local EOS=spd+205 --END OF STAGE SPEED 
+local EOS=spd+205 --END OF STAGE SPEED
 
 local getRndY=function()
   return math.random(1,wy/32-1)*32
@@ -51,47 +52,49 @@ function love.load()
   end
 end
 function love.update(dt)
-  if jump and not hit then
-    jspd = 220
-  else
-    jspd=jspd-4
-  end
-  jy=jy-jspd*dt
-  if jy<20 then
-    jspd = 0
-    hit = true
-  end
-  if jy>wy then
-    jspd = 4
-    hit = false
-  end
-  for i,k in ipairs(args) do
-    k.x=k.x-spd*dt
-    k.y=k.y+k.ys*dt
-    if k.y>wy or k.y<16 then
-      k.ys=-k.ys
+  if not pause then
+    if jump and not hit then
+      jspd = 220
+    else
+      jspd=jspd-4
     end
-    if k.x < -32 then
-      k.x=wx
-      k.y=getRndY()
+    jy=jy-jspd*dt
+    if jy<20 then
+      jspd = 0
+      hit = true
     end
-    
-    if math.abs(k.x - jx) < 8 and math.abs(k.y - jy) < 16 then
-      if k.kind==OBSTACLE then
-        loadState('gameover')
-      elseif k.kind==EARNING then
-        getCoin:seek(0)
-        getCoin:play()
-        love.score=love.score+500
+    if jy>wy then
+      jspd = 4
+      hit = false
+    end
+    for i,k in ipairs(args) do
+      k.x=k.x-spd*dt
+      k.y=k.y+k.ys*dt
+      if k.y>wy or k.y<16 then
+        k.ys=-k.ys
       end
+      if k.x < -32 then
+        k.x=wx
+        k.y=getRndY()
+      end
+
+      if math.abs(k.x - jx) < 8 and math.abs(k.y - jy) < 16 then
+        if k.kind==OBSTACLE then
+          loadState('gameover')
+        elseif k.kind==EARNING then
+          getCoin:seek(0)
+          getCoin:play()
+          love.score=love.score+500
+        end
+      end
+
+      love.score=love.score+dt
+      score:setf(math.floor(love.score/50),love.graphics.getWidth()-20,"right")
     end
-    
-    love.score=love.score+dt
-    score:setf(math.floor(love.score/50),love.graphics.getWidth()-20,"right")
-  end
-  spd=spd+dt*2
-  if spd>=EOS then
-    loadState('boss-intro')
+    spd=spd+dt*2
+    if spd>=EOS then
+      loadState('boss-intro')
+    end
   end
 end
 
@@ -118,8 +121,10 @@ function love.touchreleased()
 end
 
 function love.keypressed(key)
-  if key=='space' then
+  if key=='space' and not pause then
     jump=true
+  elseif key=='escape' then
+    pause=not pause
   end
 end
 
