@@ -21,6 +21,7 @@ end
 function love.load()
   math.randomseed(love.timer.getTime())
   love.graphics.setColor(255,255,255)
+  beam=love.audio.newSource('music/se/beam.mp3')
   music=love.audio.newSource('music/boss/boss1.mp3')
   music:setLooping(true)
   music:play()
@@ -82,6 +83,7 @@ function love.update(dt)
     end
     if math.abs(k.x - ex) < 8 and math.abs(k.y - ey) < 16 then
       if mt < 0 then
+        beam:play()
         elife = elife -1
         mt = 3
         if elife == 0 then
