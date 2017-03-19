@@ -1,5 +1,4 @@
 local text={}
-local pressed=""
 function love.load()
   music=love.audio.newSource('music/title.mp3')
   music:setLooping(true)
@@ -66,14 +65,15 @@ function love.draw()
   for i,t in ipairs(text) do
     love.graphics.draw(t.text,t.x.pos,t.y.pos)
   end
-  love.graphics.print(pressed,0,0)
 end
 
 function love.keypressed(key)
   if key=='escape' then
     love.event.push('quit')
-  else
-    pressed=key
+  elseif key=='p' then
+    loadState("game")
+  elseif key=='a' then
+    loadState("credit")
   end
 end
 
@@ -89,4 +89,3 @@ function love.mousepressed(x,y)
     end
   end
 end
-
