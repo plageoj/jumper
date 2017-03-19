@@ -8,6 +8,7 @@ local action={{p=-200,a=.4,d=1},{p=60,a=.2,d=1},{p=260,a=.5,d=2},{p=-60,a=.3,d=3
 local active,phz
 local elife = 4
 local mt = 3
+local pause=false
 
 local createItem=function(typ,iny)
   if typ == 1 or not hit then
@@ -43,57 +44,59 @@ function love.load()
   phz = 3
 end
 function love.update(dt)
-  mt = mt - dt
-  --enemy
-  if phz > 0 then
-    phz = phz - dt
-  else
-    active = math.random(1,#action)
-    phz = action[active].d
-  end
-  if active ~= nil then
-    ey = (ey + action[active].p * dt) % wy
-    if action[active].a ~= 0 and phz % action[active].a < 0.01 then
-      createItem(1,ey)
+  if not pause then
+    mt = mt - dt
+    --enemy
+    if phz > 0 then
+      phz = phz - dt
+    else
+      active = math.random(1,#action)
+      phz = action[active].d
     end
-  end
-  --jumper
-  if jump and not hit then
-    jspd = 220
-  else
-    jspd=jspd-4
-  end
-  jy=jy-jspd*dt
-  if jy<20 then
-    jspd = 0
-    hit = true
-  end
-  if jy>wy then
-    jspd = 4
-    hit = false
-  end
-  for i,k in ipairs(args) do
-    k.x=k.x-k.ty*spd*dt
-    if k.x < -32 or k.x > wx+20 then
-      table.remove(args,i)
+    if active ~= nil then
+      ey = (ey + action[active].p * dt) % wy
+      if action[active].a ~= 0 and phz % action[active].a < 0.01 then
+        createItem(1,ey)
+      end
     end
+    --jumper
+    if jump and not hit then
+      jspd = 220
+    else
+      jspd=jspd-4
+    end
+    jy=jy-jspd*dt
+    if jy<20 then
+      jspd = 0
+      hit = true
+    end
+    if jy>wy then
+      jspd = 4
+      hit = false
+    end
+    for i,k in ipairs(args) do
+      k.x=k.x-k.ty*spd*dt
+      if k.x < -32 or k.x > wx+20 then
+        table.remove(args,i)
+      end
 
-    if math.abs(k.x - jx) < 8 and math.abs(k.y - jy) < 16 then
-      loadState('gameover')
-    end
-    if math.abs(k.x - ex) < 8 and math.abs(k.y - ey) < 16 then
-      if mt < 0 then
-        beam:play()
-        elife = elife -1
-        mt = 3
-        if elife == 0 then
-          love.stage=2
-          loadState('game')
+      if math.abs(k.x - jx) < 8 and math.abs(k.y - jy) < 16 then
+        loadState('gameover')
+      end
+      if math.abs(k.x - ex) < 8 and math.abs(k.y - ey) < 16 then
+        if mt < 0 then
+          beam:play()
+          elife = elife -1
+          mt = 3
+          if elife == 0 then
+            love.stage=2
+            loadState('game')
+          end
         end
       end
     end
+    spd=spd+dt*2
   end
-  spd=spd+dt*2
 end
 
 function love.draw()
@@ -119,9 +122,11 @@ function love.touchreleased()
 end
 
 function love.keypressed(key)
-  if key=='space' then
+  if key=='space' and not pause then
     createItem(-1,jy)
     jump=true
+  elseif key=='escape' then
+    pause=not pause
   end
 end
 
