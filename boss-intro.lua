@@ -6,7 +6,7 @@ end
 function love.update(dt)
   amount=amount-255/amount
   if amount<=0 then
-    loadState('bosses/boss'..love.stage)
+    loadState('boss/boss'..love.stage)
   end
 end
 function love.draw()

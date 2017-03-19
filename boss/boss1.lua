@@ -38,7 +38,7 @@ function love.load()
   ey=wy-16
   jump=false
   hit=true
-  
+
   phz = 3
 end
 function love.update(dt)
@@ -76,7 +76,7 @@ function love.update(dt)
     if k.x < -32 or k.x > wx+20 then
       table.remove(args,i)
     end
-    
+
     if math.abs(k.x - jx) < 8 and math.abs(k.y - jy) < 16 then
       loadState('gameover')
     end
