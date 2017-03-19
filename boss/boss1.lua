@@ -6,7 +6,7 @@ local spd=255
 local jspd=-80
 local action={{p=-200,a=.4,d=1},{p=60,a=.2,d=1},{p=260,a=.5,d=2},{p=-60,a=.3,d=3}}
 local active,phz
-local elife = 6
+local elife = 4
 local mt = 3
 
 local createItem=function(typ,iny)
