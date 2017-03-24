@@ -19,6 +19,7 @@ local createItem=function(typ,iny)
       })
   end
 end
+
 function love.load()
   math.randomseed(love.timer.getTime())
   love.graphics.setColor(255,255,255)
@@ -43,6 +44,7 @@ function love.load()
 
   phz = 3
 end
+
 function love.update(dt)
   if not pause then
     mt = mt - dt

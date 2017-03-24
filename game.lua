@@ -13,6 +13,7 @@ local EOS=spd+205 --END OF STAGE SPEED
 local getRndY=function()
   return math.random(1,wy/32-1)*32
 end
+
 function love.load()
   music=love.audio.newSource('music/stg'..love.stage..'.mp3')
   music:setLooping(true)
@@ -51,6 +52,7 @@ function love.load()
     }
   end
 end
+
 function love.update(dt)
   if not pause then
     if jump and not hit then
@@ -133,4 +135,3 @@ function love.keyreleased(key)
     jump=false
   end
 end
-
