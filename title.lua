@@ -3,7 +3,6 @@ function love.load()
   music=love.audio.newSource('music/title.mp3')
   music:setLooping(true)
   music:play()
-  font=love.graphics.newFont('assets/Minimal5x7.ttf',130)
   text={
     {
       text=love.graphics.newText(font),
@@ -83,7 +82,7 @@ end
 function love.mousepressed(x,y)
   local newState={"game","credit"}
   for i=2,3 do
-    if x > text[i].x.pos and x < text[i].x.pos + text[i].text:getWidth() 
+    if x > text[i].x.pos and x < text[i].x.pos + text[i].text:getWidth()
     and y > text[i].y.pos and y < text[i].y.pos + text[i].text:getHeight() then
       loadState(newState[i-1])
     end
