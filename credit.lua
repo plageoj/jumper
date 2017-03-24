@@ -1,5 +1,6 @@
 local st=0
 local strs = '<< JUMPER >> VER 0.0.1...\n\n'..
+  '...IS AN OPEN-SOURCE SOFTWARE.\n\n'..
   '...IS LICENSED UNDER\n'..
   'THE APACHE LICENSE 2.0.\n\n'..
   '...IS POWERED BY Love2d 0.10.2.\n'..
@@ -19,7 +20,8 @@ function love.update(dt)
 end
 function love.draw()
   love.graphics.print(strs,20,20)
-  love.graphics.print("RESOLUTION: "..love.graphics.getWidth().."x"..love.graphics.getHeight(),20,love.graphics.getHeight()-60)
+  love.graphics.print("SYSTEM: "..love.system.getOS()..
+  "\nRESOLUTION: "..love.graphics.getWidth().."x"..love.graphics.getHeight(),20,love.graphics.getHeight()-100)
 end
 function love.keypressed()
   loadState("title")
