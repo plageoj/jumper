@@ -19,7 +19,7 @@ function love.update(dt)
   end
 end
 function love.draw()
-  love.graphics.print(strs,20,20)
+  love.graphics.print(strs,20,20,0,love.scaleFactor)
   love.graphics.print("SYSTEM: "..love.system.getOS()..
   "\nRESOLUTION: "..love.graphics.getWidth().."x"..love.graphics.getHeight(),20,love.graphics.getHeight()-100)
 end

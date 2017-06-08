@@ -45,6 +45,13 @@ function love.load()
     }
   }
   text[1].text:addf("<< JUMPER >>",love.graphics.getWidth(),"center",0,0,0,1,1.3)
+
+  if love.system.getOS() == 'Android' or love.system.getOS() == 'iOS' then
+    love.scaleFactor=2
+  else
+    love.scaleFactor=1
+  end
+
   love.stage=1
   love.score=0
 end
