@@ -47,7 +47,7 @@ function love.load()
   text[1].text:addf("<< JUMPER >>",love.graphics.getWidth(),"center",0,0,0,1,1.3)
 
   if love.system.getOS() == 'Android' or love.system.getOS() == 'iOS' then
-    love.scaleFactor=2
+    love.scaleFactor=1.5
   else
     love.scaleFactor=1
   end
@@ -69,7 +69,7 @@ end
 
 function love.draw()
   for i,t in ipairs(text) do
-    love.graphics.draw(t.text,t.x.pos,t.y.pos)
+    love.graphics.draw(t.text,t.x.pos,t.y.pos,0,love.scaleFactor)
   end
 end
 
